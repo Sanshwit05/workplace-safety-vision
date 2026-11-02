@@ -1,0 +1,35 @@
+project:
+  name: workplace-safety-vision
+  seed: 42
+paths:
+  dataset: data/construction-ppe
+  model: models/best.pt
+  outputs: outputs
+  reports: reports
+model:
+  base: yolov8n.pt
+  image_size: 640
+  epochs: 25
+  batch: 8
+  workers: 0
+  device: 0
+  conf: 0.35
+  iou: 0.50
+  max_det: 100
+  amp: false
+association:
+  helmet_center_x: [0.15, 0.85]
+  helmet_center_y: [-0.05, 0.55]
+  vest_center_x: [0.10, 0.90]
+  vest_center_y: [0.20, 0.95]
+tracking:
+  max_missing_frames: 15
+  iou_match: 0.25
+  min_confirmed_frames: 3
+video:
+  sample_every: 1
+  output_fps: 0
+classes:
+  person: [person, worker]
+  helmet: [helmet, hardhat, hard-hat]
+  vest: [vest, safety-vest, safety_vest]
